@@ -18,5 +18,7 @@ class AppTheme {
       ),
     ),
     scaffoldBackgroundColor: Colors.transparent,
+    progressIndicatorTheme:
+        const ProgressIndicatorThemeData(color: ColorsManager.green),
   );
 }

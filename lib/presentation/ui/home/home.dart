@@ -17,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late Widget selectedFragment;
   String appBarTitle = 'News App';
+  bool visibleSearchIcon = false;
 
   @override
   initState() {
@@ -44,6 +45,17 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           title: Text(appBarTitle),
           titleTextStyle: AppLightStyles.exoF22W400,
+          actions: [
+            Visibility(
+              visible: visibleSearchIcon,
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.search,
+                ),
+              ),
+            )
+          ],
         ),
         drawer: AppDrawer(
           onDrawerItemPressed: onDrawerItemPressed,
@@ -58,6 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       selectedFragment = widget;
       appBarTitle = label;
+      visibleSearchIcon = false;
     });
     Navigator.of(context).pop();
   }
@@ -66,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       selectedFragment = CategoryDetails(categoryDM: categoryDM);
       appBarTitle = categoryDM.title;
+      visibleSearchIcon = true;
     });
   }
 }
