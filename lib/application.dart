@@ -16,7 +16,7 @@ class NewsApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           onGenerateRoute: (settings) => RouterManager.onGenerate(settings),
-          initialRoute: Routes.homeRoute,
+          initialRoute: Routes.splashRoute,
           theme: AppTheme.light,
           debugShowCheckedModeBanner: false,
         );

@@ -22,7 +22,7 @@ class CategoriesFragment extends StatelessWidget {
           child: Text(
             'Pick your category \nof interest',
             style: AppLightStyles.poppinsF22W700.copyWith(
-              color: ColorsManager.gray,
+              color: ColorsManager.darkGray,
             ),
           ),
         ),

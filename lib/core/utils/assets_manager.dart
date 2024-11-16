@@ -8,4 +8,5 @@ class AssetsManager {
   static const String science = '$_base/science.png';
   static const String business = '$_base/business.png';
   static const String technology = '$_base/technology.png';
+  static const String splash = '$_base/splash.png';
 }
