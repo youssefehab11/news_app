@@ -3,13 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/utils/colors_manager.dart';
 import 'package:news_app/core/utils/styles_manager.dart';
 
+typedef OnSearchSubmitted = void Function(String);
+
 class SearchBox extends StatelessWidget {
   final TextEditingController searchController;
   final VoidCallback onClearIconPressed;
-  const SearchBox(
-      {super.key,
-      required this.searchController,
-      required this.onClearIconPressed});
+  final OnSearchSubmitted onSearchSubmitted;
+  const SearchBox({
+    super.key,
+    required this.searchController,
+    required this.onClearIconPressed,
+    required this.onSearchSubmitted,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +23,7 @@ class SearchBox extends StatelessWidget {
       child: TextField(
         controller: searchController,
         cursorColor: ColorsManager.green,
+        onSubmitted: (searchInput) => onSearchSubmitted(searchInput),
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,

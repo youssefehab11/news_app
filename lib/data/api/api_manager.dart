@@ -18,16 +18,24 @@ class ApiManager {
     };
     Uri url = Uri.https(_baseUrl, _sourcesEndPoint, queryParameters);
     http.Response response = await http.get(url);
-    return SourceResponse.fromJson(jsonDecode(response.body));
+    var json = jsonDecode(response.body);
+    SourceResponse sourceResponse = SourceResponse.fromJson(json);
+    return sourceResponse;
   }
 
-  static Future<ArticleResponse> getarticlesByScourceId(String sourceId) async {
+  static Future<ArticleResponse> getarticlesByScourceId(
+      String? sourceId, String? inputSearch) async {
     Map<String, dynamic> queryParameters = {
       'apiKey': _apiKey,
       'sources': sourceId,
+      'q': inputSearch,
+      'sortBy': 'publishedAt',
+      'language': 'en'
     };
     Uri url = Uri.https(_baseUrl, _articlesEndPoint, queryParameters);
     http.Response response = await http.get(url);
-    return ArticleResponse.fromJson(jsonDecode(response.body));
+    var json = jsonDecode(response.body);
+    ArticleResponse articleResponse = ArticleResponse.fromJson(json);
+    return articleResponse;
   }
 }

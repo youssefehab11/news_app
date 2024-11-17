@@ -32,15 +32,5 @@ class CategoryDetails extends StatelessWidget {
         );
       },
     );
-    // return DefaultTabController(
-    //   length: 5,
-    //   child: Column(
-    //     children: [
-    //       TabsList(
-    //         sources: [],
-    //       )
-    //     ],
-    //   ),
-    // );
   }
 }
