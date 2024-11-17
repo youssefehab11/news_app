@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/core/utils/colors_manager.dart';
 import 'package:news_app/core/utils/styles_manager.dart';
 import 'package:news_app/presentation/ui/home/appbar/widgets/search_box.dart';
 
@@ -10,6 +11,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final TextEditingController searchController;
   final double actionIconOpacity;
   final double drawerIconOpacity;
+  final OnSearchSubmitted onSearchSubmitted;
   const MyAppBar({
     super.key,
     required this.appBarTitle,
@@ -19,6 +21,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.searchController,
     required this.actionIconOpacity,
     required this.drawerIconOpacity,
+    required this.onSearchSubmitted,
   });
 
   @override
@@ -28,7 +31,10 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         duration: const Duration(milliseconds: 500),
         opacity: drawerIconOpacity,
         child: IconButton(
-          onPressed: () => Scaffold.of(context).openDrawer(),
+          disabledColor: ColorsManager.white,
+          onPressed: drawerIconOpacity == 0
+              ? null
+              : () => Scaffold.of(context).openDrawer(),
           icon: const Icon(Icons.menu),
         ),
       ),
@@ -45,6 +51,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             ? SearchBox(
                 searchController: searchController,
                 onClearIconPressed: onClearIconPressed,
+                onSearchSubmitted: onSearchSubmitted,
               )
             : Text(appBarTitle),
       ),
@@ -54,7 +61,9 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           duration: const Duration(milliseconds: 500),
           opacity: actionIconOpacity,
           child: IconButton(
-            onPressed: () => onActionsIconPressed(),
+            disabledColor: ColorsManager.white,
+            onPressed:
+                actionIconOpacity == 0 ? null : () => onActionsIconPressed(),
             icon: AnimatedSwitcher(
               duration: const Duration(milliseconds: 500),
               transitionBuilder: (child, animation) => ScaleTransition(

@@ -3,6 +3,7 @@ import 'package:news_app/core/utils/colors_manager.dart';
 import 'package:news_app/core/utils/styles_manager.dart';
 import 'package:news_app/data/model/source_response/source.dart';
 import 'package:news_app/presentation/ui/home/category_details/widgets/articles_list.dart';
+import 'package:news_app/presentation/ui/home/category_details/widgets/tab_item.dart';
 
 class SourceTabs extends StatefulWidget {
   final List<Source> sources;
@@ -25,7 +26,7 @@ class _SourceTabsState extends State<SourceTabs> {
         children: [
           TabBar(
             onTap: (index) {
-              onSourceClicked(index);
+              onSourcePressed(index);
             },
             padding: const EdgeInsets.symmetric(vertical: 8),
             labelPadding: const EdgeInsets.symmetric(horizontal: 8),
@@ -58,31 +59,11 @@ class _SourceTabsState extends State<SourceTabs> {
     );
   }
 
-  void onSourceClicked(int index) {
+  void onSourcePressed(int index) {
     if (index != selectedIndex) {
       setState(() {
         selectedIndex = index;
       });
     }
-  }
-}
-
-class TabItem extends StatelessWidget {
-  final Source? source;
-  const TabItem({
-    super.key,
-    this.source,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: ColorsManager.green, width: 2),
-        borderRadius: BorderRadius.circular(25),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Text(source?.name ?? ''),
-    );
   }
 }
