@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/utils/assets_manager.dart';
 import 'package:news_app/core/utils/colors_manager.dart';
-import 'package:news_app/core/utils/styles_manager.dart';
 import 'package:news_app/models/category_dm.dart';
+import 'package:news_app/presentation/ui/home/appbar/appbar.dart';
 import 'package:news_app/presentation/ui/home/category_details/category_details.dart';
 import 'package:news_app/presentation/ui/home/drawer/drawer.dart';
 import 'package:news_app/presentation/ui/home/tabs/categories/categories.dart';
@@ -16,12 +16,16 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late Widget selectedFragment;
+  late TextEditingController searchController;
   String appBarTitle = 'News App';
-  bool visibleSearchIcon = false;
+  double actionIconOpacity = 0;
+  bool isSearching = false;
+  double drawerIconOpacity = 1;
 
   @override
   initState() {
     super.initState();
+    searchController = TextEditingController();
     selectedFragment = CategoriesFragment(
       onCategoryItemPressed: onCategoryItemPressed,
     );
@@ -42,20 +46,14 @@ class _HomeScreenState extends State<HomeScreen> {
         color: ColorsManager.white,
       ),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(appBarTitle),
-          titleTextStyle: AppLightStyles.exoF22W400,
-          actions: [
-            Visibility(
-              visible: visibleSearchIcon,
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.search,
-                ),
-              ),
-            )
-          ],
+        appBar: MyAppBar(
+          drawerIconOpacity: drawerIconOpacity,
+          appBarTitle: appBarTitle,
+          isSearching: isSearching,
+          actionIconOpacity: actionIconOpacity,
+          onActionsIconPressed: onActionsIconPressed,
+          onClearIconPressed: onClearIconPressed,
+          searchController: searchController,
         ),
         drawer: AppDrawer(
           onDrawerItemPressed: onDrawerItemPressed,
@@ -70,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       selectedFragment = widget;
       appBarTitle = label;
-      visibleSearchIcon = false;
+      actionIconOpacity = 0;
     });
     Navigator.of(context).pop();
   }
@@ -79,7 +77,20 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       selectedFragment = CategoryDetails(categoryDM: categoryDM);
       appBarTitle = categoryDM.title;
-      visibleSearchIcon = true;
+      actionIconOpacity = 1;
     });
+  }
+
+  void onActionsIconPressed() {
+    setState(() {
+      isSearching = !isSearching;
+      searchController.clear();
+      drawerIconOpacity = isSearching ? 0 : 1;
+    });
+  }
+
+  void onClearIconPressed() {
+    searchController.clear();
+    setState(() {});
   }
 }
