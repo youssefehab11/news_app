@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/data/api/api_manager.dart';
 import 'package:news_app/data/model/article_response/article.dart';
 import 'package:news_app/data/model/source_response/source.dart';
-import 'package:news_app/presentation/ui/home/category_details/widgets/article_item.dart';
+import 'package:news_app/presentation/ui/home/fragments/category_details/widgets/article_item.dart';
 
 class ArticlesList extends StatelessWidget {
   final Source? source;
@@ -29,7 +29,18 @@ class ArticlesList extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         }
-        List<Article> articles = snapshot.data?.articles ?? [];
+        List<Article> resultArticles = snapshot.data?.articles ?? [];
+        List<Article> articles = [];
+        for (Article article in resultArticles) {
+          if (article.title != '[Removed]') {
+            articles.add(article);
+          }
+        }
+        if (articles.isEmpty) {
+          return Center(
+            child: Text('No articles to show...'),
+          );
+        }
         return ListView.separated(
           itemBuilder: (context, index) {
             return ArticleItem(

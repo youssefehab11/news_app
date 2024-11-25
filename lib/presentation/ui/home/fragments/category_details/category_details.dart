@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/data/api/api_manager.dart';
 import 'package:news_app/data/model/source_response/source.dart';
 import 'package:news_app/models/category_dm.dart';
-import 'package:news_app/presentation/ui/home/category_details/widgets/source_tabs.dart';
+import 'package:news_app/presentation/ui/home/fragments/category_details/widgets/source_tabs.dart';
 
 class CategoryDetails extends StatelessWidget {
   final CategoryDM categoryDM;

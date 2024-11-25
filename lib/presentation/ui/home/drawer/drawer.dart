@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/utils/colors_manager.dart';
 import 'package:news_app/core/utils/styles_manager.dart';
-import 'package:news_app/presentation/ui/home/tabs/categories/categories.dart';
-import 'package:news_app/presentation/ui/home/tabs/categories/widgets/category_item.dart';
-import 'package:news_app/presentation/ui/home/tabs/settings/settings.dart';
+import 'package:news_app/presentation/ui/home/fragments/categories/categories.dart';
+import 'package:news_app/presentation/ui/home/fragments/categories/widgets/category_item.dart';
+import 'package:news_app/presentation/ui/home/fragments/settings/settings.dart';
 import 'package:news_app/presentation/ui/home/drawer/widgets/drawer_item.dart';
 
 class AppDrawer extends StatelessWidget {
