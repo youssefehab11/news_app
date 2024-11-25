@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/core/utils/assets_manager.dart';
-import 'package:news_app/core/utils/colors_manager.dart';
+import 'package:news_app/core/components/main_background.dart';
 import 'package:news_app/models/category_dm.dart';
 import 'package:news_app/presentation/ui/home/appbar/appbar.dart';
-import 'package:news_app/presentation/ui/home/category_details/category_details.dart';
+import 'package:news_app/presentation/ui/home/fragments/category_details/category_details.dart';
 import 'package:news_app/presentation/ui/home/drawer/drawer.dart';
-import 'package:news_app/presentation/ui/home/search/search.dart';
-import 'package:news_app/presentation/ui/home/tabs/categories/categories.dart';
+import 'package:news_app/presentation/ui/home/fragments/search/search.dart';
+import 'package:news_app/presentation/ui/home/fragments/categories/categories.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -35,19 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: AssetImage(
-            AssetsManager.background,
-          ),
-        ),
-        color: ColorsManager.white,
-      ),
-      child: Scaffold(
+    return MainBachground(
+      scaffold: Scaffold(
         appBar: MyAppBar(
           drawerIconOpacity: drawerIconOpacity,
           appBarTitle: appBarTitle,
