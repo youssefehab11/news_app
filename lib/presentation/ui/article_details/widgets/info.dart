@@ -14,6 +14,7 @@ class ArticleInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
           article.source?.name ?? '',

@@ -24,6 +24,7 @@ class SearchBox extends StatelessWidget {
         controller: searchController,
         cursorColor: ColorsManager.green,
         onSubmitted: (searchInput) => onSearchSubmitted(searchInput),
+        textInputAction: TextInputAction.search,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,
