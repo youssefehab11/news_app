@@ -27,7 +27,10 @@ class _ArticlesListState extends State<ArticlesList> {
   void initState() {
     super.initState();
     viewModel = ArticlesViewModel();
-    viewModel.getArticlesBySourceId(widget.source?.id, widget.inputSearch);
+    viewModel.getArticlesBySourceId(
+      sourceId: widget.source?.id,
+      inputSearch: widget.inputSearch,
+    );
   }
 
   @override
@@ -35,7 +38,10 @@ class _ArticlesListState extends State<ArticlesList> {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.source?.id != widget.source?.id ||
         oldWidget.inputSearch != widget.inputSearch) {
-      viewModel.getArticlesBySourceId(widget.source?.id, widget.inputSearch);
+      viewModel.getArticlesBySourceId(
+        sourceId: widget.source?.id,
+        inputSearch: widget.inputSearch,
+      );
     }
   }
 

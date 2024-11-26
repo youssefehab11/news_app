@@ -1,0 +1,19 @@
+{
+    "newsAppTitle": "الأخبار",
+    "mainMenu": "القائمة الرئيسية",
+    "pickCategoryLabel": "اختر الفئة",
+    "sports": "الرياضة",
+    "general": "العامة",
+    "health": "الصحة",
+    "business": "التجارة",
+    "entertainment": "الترقيه",
+    "science": "العلوم",
+    "technology": "النكنولوجيا",
+    "categories": "الفئات",
+    "settings": "الإعدادات",
+    "language": "اللغة",
+    "english": "English",
+    "arabic": "العربية",
+    "searchHint": "ابحث المقال",
+    "viewFullArticle": "رؤية المقال كاملاً"
+}

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/application_view_model.dart';
 import 'package:news_app/core/utils/colors_manager.dart';
 import 'package:news_app/core/utils/styles_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class SettingsFragment extends StatelessWidget {
   const SettingsFragment({super.key});
@@ -13,15 +16,18 @@ class SettingsFragment extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Language',
+            AppLocalizations.of(context)!.language,
             style: AppLightStyles.poppinsF16W600,
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: DropdownMenu<String>(
-              onSelected: (value) => onLanguageChange(value),
+              onSelected: (value) => onLanguageChange(value, context),
               width: double.infinity,
-              initialSelection: 'English',
+              initialSelection:
+                  context.watch<ApplicationViewModel>().currentLanguage == 'en'
+                      ? AppLocalizations.of(context)!.english
+                      : AppLocalizations.of(context)!.arabic,
               textStyle: AppLightStyles.poppinsF14W400
                   .copyWith(color: ColorsManager.green, fontSize: 16),
               trailingIcon: Icon(
@@ -41,10 +47,13 @@ class SettingsFragment extends StatelessWidget {
               ),
               dropdownMenuEntries: [
                 DropdownMenuEntry(
-                  value: 'English',
-                  label: 'English',
+                  value: AppLocalizations.of(context)!.english,
+                  label: AppLocalizations.of(context)!.english,
                 ),
-                DropdownMenuEntry(value: 'Arabic', label: 'العربية'),
+                DropdownMenuEntry(
+                  value: AppLocalizations.of(context)!.arabic,
+                  label: AppLocalizations.of(context)!.arabic,
+                ),
               ],
             ),
           )
@@ -53,5 +62,11 @@ class SettingsFragment extends StatelessWidget {
     );
   }
 
-  void onLanguageChange(String? value) {}
+  void onLanguageChange(String? value, BuildContext context) {
+    if (value == 'English') {
+      context.read<ApplicationViewModel>().changeLanguage('en');
+    } else if (value == 'العربية') {
+      context.read<ApplicationViewModel>().changeLanguage('ar');
+    }
+  }
 }

@@ -1,0 +1,19 @@
+{
+    "newsAppTitle": "News",
+    "mainMenu": "Main Menu",
+    "pickCategoryLabel": "Pick your category \nof interest",
+    "sports": "Sports",
+    "general": "General",
+    "health": "Health",
+    "business": "Business",
+    "entertainment": "Entertainment",
+    "science": "Science",
+    "technology": "Technology",
+    "categories": "Categories",
+    "settings": "Settings",
+    "language": "Language",
+    "english": "English",
+    "arabic": "العربية",
+    "searchHint": "Search Article",
+    "viewFullArticle": "View Full Article"
+}

@@ -12,7 +12,6 @@ class SourcesViewModel extends ChangeNotifier {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     isDisposed = true;
   }

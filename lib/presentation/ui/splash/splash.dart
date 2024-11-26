@@ -33,12 +33,3 @@ class SplashScreen extends StatelessWidget {
     );
   }
 }
-// Container(
-//       width: double.infinity,
-//       height: double.infinity,
-//       decoration: const BoxDecoration(
-//         image: DecorationImage(
-//             image: AssetImage(AssetsManager.splash), fit: BoxFit.cover),
-//       ),
-//       child: const Scaffold(),
-//     );

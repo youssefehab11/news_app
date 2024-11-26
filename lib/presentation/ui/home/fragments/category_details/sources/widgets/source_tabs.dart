@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/core/utils/colors_manager.dart';
 import 'package:news_app/core/utils/styles_manager.dart';
 import 'package:news_app/data/model/source_response/source.dart';
-import 'package:news_app/presentation/ui/home/fragments/category_details/articles/widgets/articles_list.dart';
+import 'package:news_app/presentation/ui/home/fragments/category_details/articles/view/articles.dart';
 import 'package:news_app/presentation/ui/home/fragments/category_details/sources/widgets/tab_tab_item.dart';
 
 class SourceTabs extends StatefulWidget {
@@ -53,7 +53,10 @@ class _SourceTabsState extends State<SourceTabs> {
                 )
                 .toList(),
           ),
-          Expanded(child: ArticlesList(source: widget.sources[selectedIndex])),
+          Articles(
+            sources: widget.sources,
+            selectedIndex: selectedIndex,
+          ),
         ],
       ),
     );

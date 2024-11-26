@@ -6,6 +6,7 @@ import 'package:news_app/presentation/ui/home/fragments/category_details/categor
 import 'package:news_app/presentation/ui/home/drawer/drawer.dart';
 import 'package:news_app/presentation/ui/home/fragments/search/search.dart';
 import 'package:news_app/presentation/ui/home/fragments/categories/categories.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,11 +18,17 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late Widget selectedFragment;
   late TextEditingController searchController;
-  String appBarTitle = 'News App';
   double actionIconOpacity = 0;
   bool isSearching = false;
   double drawerIconOpacity = 1;
   CategoryDM? currentCategory;
+  late String appBarTitle;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    appBarTitle = AppLocalizations.of(context)!.newsAppTitle;
+  }
 
   @override
   initState() {
@@ -30,6 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
     selectedFragment = CategoriesFragment(
       onCategoryItemPressed: onCategoryItemPressed,
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    searchController.dispose();
   }
 
   @override
