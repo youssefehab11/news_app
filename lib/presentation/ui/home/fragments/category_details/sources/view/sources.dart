@@ -7,8 +7,10 @@ import 'package:provider/provider.dart';
 
 class Sources extends StatefulWidget {
   final String categoryId;
+  final String language;
   const Sources({
     super.key,
+    required this.language,
     required this.categoryId,
   });
 

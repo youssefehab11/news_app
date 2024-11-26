@@ -23,10 +23,12 @@ class ArticlesViewModel extends ChangeNotifier {
     }
   }
 
-  void getArticlesBySourceId(String? sourceId, String? inputSearch) async {
+  void getArticlesBySourceId({String? sourceId, String? inputSearch}) async {
     emit(ArticlesLoadingState());
-    Result<List<Article>> result =
-        await ApiManager.getarticlesByScourceId(sourceId, inputSearch);
+    Result<List<Article>> result = await ApiManager.getarticlesByScourceId(
+      sourceId,
+      inputSearch,
+    );
     switch (result) {
       case Success<List<Article>>():
         {

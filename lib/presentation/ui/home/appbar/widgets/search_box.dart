@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/utils/colors_manager.dart';
 import 'package:news_app/core/utils/styles_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 typedef OnSearchSubmitted = void Function(String);
 
@@ -30,7 +31,7 @@ class SearchBox extends StatelessWidget {
           fillColor: Colors.white,
           enabledBorder: CustomBorder(),
           focusedBorder: CustomBorder(),
-          hintText: 'Search Article',
+          hintText: AppLocalizations.of(context)!.searchHint,
           hintStyle: AppLightStyles.poppinsF14W400
               .copyWith(color: ColorsManager.green),
           prefixIcon: GestureDetector(

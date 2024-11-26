@@ -6,6 +6,7 @@ import 'package:news_app/presentation/ui/home/fragments/categories/categories.da
 import 'package:news_app/presentation/ui/home/fragments/categories/widgets/category_item.dart';
 import 'package:news_app/presentation/ui/home/fragments/settings/settings.dart';
 import 'package:news_app/presentation/ui/home/drawer/widgets/drawer_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AppDrawer extends StatelessWidget {
   final OnDrawerItemPressed onDrawerItemPressed;
@@ -28,15 +29,15 @@ class AppDrawer extends StatelessWidget {
             color: ColorsManager.green,
             child: SafeArea(
               child: Text(
-                'News App!',
+                AppLocalizations.of(context)!.mainMenu,
                 style: AppLightStyles.poppinsF24W700
                     .copyWith(color: ColorsManager.white),
               ),
             ),
           ),
           DrawerItem(
-            appBarTitle: 'News App',
-            label: 'Categories',
+            appBarTitle: AppLocalizations.of(context)!.newsAppTitle,
+            label: AppLocalizations.of(context)!.categories,
             icon: Icons.list,
             onDrawerItemPressed: onDrawerItemPressed,
             fragment: CategoriesFragment(
@@ -44,8 +45,8 @@ class AppDrawer extends StatelessWidget {
             ),
           ),
           DrawerItem(
-            appBarTitle: 'Settings',
-            label: 'Settings',
+            appBarTitle: AppLocalizations.of(context)!.settings,
+            label: AppLocalizations.of(context)!.settings,
             icon: Icons.settings,
             onDrawerItemPressed: onDrawerItemPressed,
             fragment: const SettingsFragment(),
