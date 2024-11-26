@@ -44,36 +44,47 @@ class _ArticlesListState extends State<ArticlesList> {
     return ChangeNotifierProvider(
       create: (context) => viewModel,
       child: Consumer<ArticlesViewModel>(
-        builder: (context, value, child) {
-          if (viewModel.isLoading) {
-            return LoadingWidget();
+        builder: (context, viewModel, child) {
+          ArticlesUIState state = viewModel.state;
+          switch (state) {
+            case ArticlesSuccessState():
+              {
+                List<Article> resultArticles = state.articles;
+                List<Article> articles = [];
+                for (Article article in resultArticles) {
+                  if (article.title != '[Removed]') {
+                    articles.add(article);
+                  }
+                }
+                if (articles.isEmpty) {
+                  return Center(
+                    child: Text('No articles to show...'),
+                  );
+                }
+                return ListView.separated(
+                  itemBuilder: (context, index) {
+                    return ArticleItem(
+                      article: articles[index],
+                    );
+                  },
+                  separatorBuilder: (context, index) => SizedBox(
+                    height: 10.h,
+                  ),
+                  itemCount: articles.length,
+                );
+              }
+            case ArticlesLoadingState():
+              {
+                return LoadingWidget();
+              }
+            case ArticlesErrorState():
+              {
+                return AppErrorWidget(
+                  serverError: state.serverError,
+                  error: state.failure,
+                );
+              }
           }
-          if (viewModel.errorMessage != null) {
-            return AppErrorWidget(errorMessage: viewModel.errorMessage!);
-          }
-          List<Article> resultArticles = viewModel.articles ?? [];
-          List<Article> articles = [];
-          for (Article article in resultArticles) {
-            if (article.title != '[Removed]') {
-              articles.add(article);
-            }
-          }
-          if (articles.isEmpty) {
-            return Center(
-              child: Text('No articles to show...'),
-            );
-          }
-          return ListView.separated(
-            itemBuilder: (context, index) {
-              return ArticleItem(
-                article: articles[index],
-              );
-            },
-            separatorBuilder: (context, index) => SizedBox(
-              height: 10.h,
-            ),
-            itemCount: articles.length,
-          );
         },
       ),
     );
