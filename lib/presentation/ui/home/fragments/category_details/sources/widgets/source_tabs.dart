@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:news_app/core/utils/colors_manager.dart';
 import 'package:news_app/core/utils/styles_manager.dart';
 import 'package:news_app/data/model/source_response/source.dart';
-import 'package:news_app/presentation/ui/home/fragments/category_details/widgets/articles_list.dart';
-import 'package:news_app/presentation/ui/home/fragments/category_details/widgets/tab_item.dart';
+import 'package:news_app/presentation/ui/home/fragments/category_details/articles/widgets/articles_list.dart';
+import 'package:news_app/presentation/ui/home/fragments/category_details/sources/widgets/tab_tab_item.dart';
 
 class SourceTabs extends StatefulWidget {
   final List<Source> sources;
