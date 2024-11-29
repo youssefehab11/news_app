@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/core/base/base_ui_state.dart';
 import 'package:news_app/core/components/error_widget.dart';
 import 'package:news_app/core/components/loading_widget.dart';
 import 'package:news_app/data/model/article_response/article.dart';
@@ -51,11 +52,11 @@ class _ArticlesListState extends State<ArticlesList> {
       create: (context) => viewModel,
       child: Consumer<ArticlesViewModel>(
         builder: (context, viewModel, child) {
-          ArticlesUIState state = viewModel.state;
+          BaseUiState<List<Article>> state = viewModel.state;
           switch (state) {
-            case ArticlesSuccessState():
+            case SuccessState():
               {
-                List<Article> resultArticles = state.articles;
+                List<Article> resultArticles = state.data;
                 List<Article> articles = [];
                 for (Article article in resultArticles) {
                   if (article.title != '[Removed]') {
@@ -79,11 +80,11 @@ class _ArticlesListState extends State<ArticlesList> {
                   itemCount: articles.length,
                 );
               }
-            case ArticlesLoadingState():
+            case LoadingState():
               {
                 return LoadingWidget();
               }
-            case ArticlesErrorState():
+            case ErrorState():
               {
                 return AppErrorWidget(
                   serverError: state.serverError,

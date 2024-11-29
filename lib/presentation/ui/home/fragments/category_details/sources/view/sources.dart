@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/core/base/base_ui_state.dart';
 import 'package:news_app/core/components/error_widget.dart';
 import 'package:news_app/core/components/loading_widget.dart';
+import 'package:news_app/data/model/source_response/source.dart';
 import 'package:news_app/presentation/ui/home/fragments/category_details/sources/view_model/sources_view_model.dart';
 import 'package:news_app/presentation/ui/home/fragments/category_details/sources/widgets/source_tabs.dart';
 import 'package:provider/provider.dart';
@@ -33,19 +35,19 @@ class _SourcesState extends State<Sources> {
       create: (context) => viewModel,
       child: Consumer<SourcesViewModel>(
         builder: (context, viewModel, child) {
-          SourcesUIState state = viewModel.state;
+          BaseUiState<List<Source>> state = viewModel.state;
           switch (state) {
-            case SourcesSuccessState():
+            case SuccessState():
               {
                 return SourceTabs(
-                  sources: state.sources,
+                  sources: state.data,
                 );
               }
-            case SourcesLoadingState():
+            case LoadingState():
               {
                 return LoadingWidget();
               }
-            case SourcesErrorState():
+            case ErrorState():
               {
                 return AppErrorWidget(
                   serverError: state.serverError,
