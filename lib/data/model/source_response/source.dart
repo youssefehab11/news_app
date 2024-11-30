@@ -1,3 +1,5 @@
+import 'package:news_app/domain/entity/source_entity.dart';
+
 class Source {
   String? id;
   String? name;
@@ -25,5 +27,9 @@ class Source {
     category = json['category'];
     language = json['language'];
     country = json['country'];
+  }
+
+  SourceEntity toSourceEntity() {
+    return SourceEntity(id: id, name: name);
   }
 }

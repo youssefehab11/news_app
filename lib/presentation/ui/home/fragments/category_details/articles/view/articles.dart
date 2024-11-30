@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/data/model/source_response/source.dart';
+import 'package:news_app/domain/entity/source_entity.dart';
 import 'package:news_app/presentation/ui/home/fragments/category_details/articles/widgets/articles_list.dart';
 
 class Articles extends StatefulWidget {
-  final List<Source> sources;
+  final List<SourceEntity> sources;
   final int selectedIndex;
   const Articles({
     super.key,

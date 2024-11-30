@@ -3,14 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/base/base_ui_state.dart';
 import 'package:news_app/core/components/error_widget.dart';
 import 'package:news_app/core/components/loading_widget.dart';
-import 'package:news_app/data/model/article_response/article.dart';
-import 'package:news_app/data/model/source_response/source.dart';
+import 'package:news_app/data/api/api_manager.dart';
+import 'package:news_app/data/data_source_impl/articles_data_source_impl.dart';
+import 'package:news_app/data/repository_impl/articles_repository_impl.dart';
+import 'package:news_app/domain/entity/article_entity.dart';
+import 'package:news_app/domain/entity/source_entity.dart';
+import 'package:news_app/domain/usecases/get_articles_usecase.dart';
 import 'package:news_app/presentation/ui/home/fragments/category_details/articles/view_model/articles_view_model.dart';
 import 'package:news_app/presentation/ui/home/fragments/category_details/articles/widgets/article_item.dart';
 import 'package:provider/provider.dart';
 
 class ArticlesList extends StatefulWidget {
-  final Source? source;
+  final SourceEntity? source;
   final String? inputSearch;
   const ArticlesList({
     super.key,
@@ -27,7 +31,15 @@ class _ArticlesListState extends State<ArticlesList> {
   @override
   void initState() {
     super.initState();
-    viewModel = ArticlesViewModel();
+    viewModel = ArticlesViewModel(
+      usecase: GetArticlesUsecase(
+        repository: ArticlesRepositoryImpl(
+          articlesDataSource: ArticlesDataSourceImpl(
+            apiManager: ApiManager(),
+          ),
+        ),
+      ),
+    );
     viewModel.getArticlesBySourceId(
       sourceId: widget.source?.id,
       inputSearch: widget.inputSearch,
@@ -52,13 +64,13 @@ class _ArticlesListState extends State<ArticlesList> {
       create: (context) => viewModel,
       child: Consumer<ArticlesViewModel>(
         builder: (context, viewModel, child) {
-          BaseUiState<List<Article>> state = viewModel.state;
+          BaseUiState<List<ArticleEntity>> state = viewModel.state;
           switch (state) {
             case SuccessState():
               {
-                List<Article> resultArticles = state.data;
-                List<Article> articles = [];
-                for (Article article in resultArticles) {
+                List<ArticleEntity> resultArticles = state.data;
+                List<ArticleEntity> articles = [];
+                for (ArticleEntity article in resultArticles) {
                   if (article.title != '[Removed]') {
                     articles.add(article);
                   }
