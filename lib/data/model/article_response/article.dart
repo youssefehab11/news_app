@@ -1,6 +1,16 @@
 import 'package:news_app/data/model/source_response/source.dart';
+import 'package:news_app/domain/entity/article_entity.dart';
 
 class Article {
+  Source? source;
+  String? author;
+  String? title;
+  String? description;
+  String? url;
+  String? urlToImage;
+  String? publishedAt;
+  String? content;
+
   Article({
     this.source,
     this.author,
@@ -22,12 +32,16 @@ class Article {
     publishedAt = json['publishedAt'];
     content = json['content'];
   }
-  Source? source;
-  String? author;
-  String? title;
-  String? description;
-  String? url;
-  String? urlToImage;
-  String? publishedAt;
-  String? content;
+  ArticleEntity toArticleEntity() {
+    return ArticleEntity(
+      author: author,
+      sourceName: source?.name,
+      description: description,
+      publishedAt: publishedAt,
+      sourceId: source?.id,
+      title: title,
+      url: url,
+      urlToImage: urlToImage,
+    );
+  }
 }

@@ -12,7 +12,7 @@ class ApiManager {
   static const String _sourcesEndPoint = 'v2/top-headlines/sources';
   static const String _articlesEndPoint = 'v2/everything';
 
-  static Future<Result<List<Source>>> getSourcesByCategoryId(
+  Future<Result<List<Source>>> getSourcesByCategoryId(
     String categoryId,
   ) async {
     Map<String, dynamic> queryParameters = {
@@ -38,7 +38,7 @@ class ApiManager {
     }
   }
 
-  static Future<Result<List<Article>>> getarticlesByScourceId(
+  Future<Result<List<Article>>> getarticlesByScourceId(
     String? sourceId,
     String? inputSearch,
   ) async {

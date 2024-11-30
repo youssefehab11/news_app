@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/components/main_background.dart';
 import 'package:news_app/core/utils/styles_manager.dart';
-import 'package:news_app/data/model/article_response/article.dart';
+import 'package:news_app/domain/entity/article_entity.dart';
 import 'package:news_app/presentation/ui/article_details/widgets/content.dart';
 import 'package:news_app/presentation/ui/article_details/widgets/image.dart';
 import 'package:news_app/presentation/ui/article_details/widgets/info.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ArticleDetails extends StatelessWidget {
-  final Article article;
+  final ArticleEntity article;
   const ArticleDetails({
     super.key,
     required this.article,

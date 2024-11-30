@@ -5,10 +5,10 @@ import 'package:news_app/core/router/routes.dart';
 import 'package:news_app/core/utils/colors_manager.dart';
 import 'package:news_app/core/utils/date_format.dart';
 import 'package:news_app/core/utils/styles_manager.dart';
-import 'package:news_app/data/model/article_response/article.dart';
+import 'package:news_app/domain/entity/article_entity.dart';
 
 class ArticleItem extends StatelessWidget {
-  final Article article;
+  final ArticleEntity article;
   const ArticleItem({super.key, required this.article});
 
   @override

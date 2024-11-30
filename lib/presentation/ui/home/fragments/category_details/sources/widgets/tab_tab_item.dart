@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/utils/colors_manager.dart';
-import 'package:news_app/data/model/source_response/source.dart';
+import 'package:news_app/domain/entity/source_entity.dart';
 
 class TabItem extends StatelessWidget {
-  final Source? source;
+  final SourceEntity? source;
   const TabItem({
     super.key,
     this.source,

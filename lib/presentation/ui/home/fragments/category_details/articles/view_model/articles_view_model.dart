@@ -1,28 +1,29 @@
 import 'package:news_app/core/base/base_ui_state.dart';
 import 'package:news_app/core/base/base_view_model.dart';
-import 'package:news_app/data/api/api_manager.dart';
 import 'package:news_app/data/api/result.dart';
-import 'package:news_app/data/model/article_response/article.dart';
+import 'package:news_app/domain/entity/article_entity.dart';
+import 'package:news_app/domain/usecases/get_articles_usecase.dart';
 
-class ArticlesViewModel extends BaseViewModel<List<Article>> {
-  ArticlesViewModel() : super(state: LoadingState());
+class ArticlesViewModel extends BaseViewModel<List<ArticleEntity>> {
+  GetArticlesUsecase usecase;
+  ArticlesViewModel({required this.usecase}) : super(state: LoadingState());
 
   void getArticlesBySourceId({String? sourceId, String? inputSearch}) async {
     emit(LoadingState());
-    Result<List<Article>> result = await ApiManager.getarticlesByScourceId(
-      sourceId,
-      inputSearch,
+    Result<List<ArticleEntity>> result = await usecase.execute(
+      sourceId ?? '',
+      inputSearch ?? '',
     );
     switch (result) {
-      case Success<List<Article>>():
+      case Success<List<ArticleEntity>>():
         {
           emit(SuccessState(data: result.data));
         }
-      case ServerError<List<Article>>():
+      case ServerError<List<ArticleEntity>>():
         {
           emit(ErrorState(serverError: result));
         }
-      case Failure<List<Article>>():
+      case Failure<List<ArticleEntity>>():
         {
           emit(ErrorState(failure: result));
         }
